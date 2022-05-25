@@ -1,0 +1,19 @@
+Source: tuxedo-dgpu-run
+Section: unknown
+Priority: optional
+Maintainer: Werner Sembach <tux@tuxedocomputers.com>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.0
+Homepage: https://tuxedocomputers.com
+Vcs-Browser: https://github.com/tuxedocomputers/tuxedo-dgpu-run
+Vcs-Git: https://github.com/tuxedocomputers/tuxedo-dgpu-run.git
+Rules-Requires-Root: no
+
+Package: tuxedo-dgpu-run
+Architecture: all
+Depends: ${misc:Depends}
+Description: Add easy ways to launch programms on dGPU on optimus devices
+ This packages is intended to make it easy to use the on-demand mode on optimus
+ devices having both an iGPU and a dGPU.
+ Currently this package adds a right click menu entry "Run on dedicated GPU) to
+ desktop entries on the desktop or the start menu in KDE Plasma 5.
