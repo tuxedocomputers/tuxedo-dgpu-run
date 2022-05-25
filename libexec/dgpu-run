@@ -1,0 +1,77 @@
+#!/bin/bash
+
+
+# Help output
+
+if [[ $# -lt 1 ]] || [[ $1 != *.desktop ]]; then
+    echo "Usage: $0 <desktop entry>"
+    exit
+fi
+
+
+# Check if PRIME is supported and correctly set up
+
+if ! [[ -f /var/lib/ubuntu-drivers-common/last_gfx_boot ]]; then
+    echo "/var/lib/ubuntu-drivers-common/last_gfx_boot not found. Can't find number of installed GPUs."
+    exit
+else
+    GPU_COUNT=$(wc -l /var/lib/ubuntu-drivers-common/last_gfx_boot | awk '{print $1}')
+
+    if [[ $GPU_COUNT -lt 1 ]]; then
+        echo "/var/lib/ubuntu-drivers-common/last_gfx_boot empty. Can't find number of installed GPUs."
+        exit
+    elif [[ $GPU_COUNT -eq 1 ]]; then
+        echo "System does not support GPU offloading. It either has only one GPU or one of the GPUs is disabled in BIOS."
+        exit
+    fi
+fi
+
+if ! command -v prime-select > /dev/null 2>&1; then
+    echo "prime-select not found. GPU offloading not installed correctly."
+    exit
+else
+    if [[ $(prime-select query) != "on-demand" ]]; then
+        echo "GPU on-demand mode not active. Run `sudo prime-select on-demand` and reboot your system to correct this setting."
+        exit
+    fi
+fi
+
+
+# Check if desktop entry is an unsuported launcher shortcut
+
+EXEC_LINE=$(awk -F '=' '
+    $0~"^\\s*\\[Desktop Entry\\]\\s*$" {
+        SECTION_ACTIVE=1
+        next
+    }
+    $0~"^\\s*\\[.*\\]\\s*$" {
+        SECTION_ACTIVE=0
+        next
+    }
+    SECTION_ACTIVE==1 && $1~"^\\s*Exec\\s*$" {
+        print $0
+    }
+' "$1" | sed 's/\s*Exec\s*=//')
+
+if [[ $EXEC_LINE =~ steam[[:space:]]*steam://rungameid/ ]]; then
+    echo "Steam shortcuts are not supported by this command. To enable GPU offloading for Steam apps follow this guide instead <link>."
+fi
+
+if [[ $EXEC_LINE =~ lutris[[:space:]]*lutris:rungameid/ ]]; then
+    echo "Lutris shortcuts are not supported by this command. To enable GPU offloading for Lutris apps follow this guide instead <link>."
+fi
+
+if [[ $EXEC_LINE =~ rare[[:space:]]*launch[[:space:]]* ]]; then
+    echo "Rare shortcuts are not supported by this command. To enable GPU offloading for Rare apps follow this guide instead <link>."
+fi
+
+# Minigalaxy and Heroic don't create shortcuts
+# To check:
+# itch.io
+# GameHub
+# Bottles
+# PlayOnLinux
+# Pegasus Frontend
+# Epic Games Store installed through Lutris
+# UbisoftConnect installed through Lutris
+# Origin installed through Lutris
