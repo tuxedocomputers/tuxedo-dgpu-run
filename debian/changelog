@@ -1,5 +1,5 @@
-tuxedo-dgpu-run (0.0.1) UNRELEASED; urgency=medium
+tuxedo-dgpu-run (0.0.1) jammy; urgency=medium
 
   * Initial BETA Release.
 
- -- Tuxedo BOT <tux@tuxedocomputers.com>  Wed, 25 May 2022 21:12:16 +0200
+ -- Tuxedo BOT <tux@tuxedocomputers.com>  Fri, 27 May 2022 13:16:21 +0200
