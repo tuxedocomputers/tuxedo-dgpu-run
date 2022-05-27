@@ -1,5 +1,5 @@
 Source: tuxedo-dgpu-run
-Section: unknown
+Section: misc
 Priority: optional
 Maintainer: Werner Sembach <tux@tuxedocomputers.com>
 Build-Depends: debhelper-compat (= 13)
