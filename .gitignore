@@ -1,0 +1,6 @@
+/debian/.debhelper/
+/debian/debhelper-build-stamp
+/debian/files
+/debian/tuxedo-dgpu-run.substvars
+/debian/tuxedo-dgpu-run/
+/obj-x86_64-linux-gnu/
