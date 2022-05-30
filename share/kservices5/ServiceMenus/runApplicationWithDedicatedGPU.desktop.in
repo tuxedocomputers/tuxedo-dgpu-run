@@ -7,4 +7,4 @@ X-KDE-Priority=TopLevel
 
 [Desktop Action runApplicationWithDedicatedGPU]
 Name=Run Application with dedicated GPU
-Exec=../../../libexec/dgpu-run-desktop-entry %u
+Exec=${CMAKE_INSTALL_PREFIX}/libexec/dgpu-run-desktop-entry %u
