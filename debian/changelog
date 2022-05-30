@@ -1,3 +1,11 @@
+tuxedo-dgpu-run (0.0.2) jammy; urgency=medium
+
+  [ Werner Sembach ]
+  * Fix broken relative path with package-creation-time determined absolute path
+  * Fix coding style consistency
+
+ -- Tuxedo BOT <tux@tuxedocomputers.com>  Mon, 30 May 2022 17:17:04 +0200
+
 tuxedo-dgpu-run (0.0.1) jammy; urgency=medium
 
   * Initial BETA Release.
