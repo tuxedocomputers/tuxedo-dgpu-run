@@ -1,4 +1,5 @@
 [Desktop Entry]
+Icon=cpu
 Type=Service
 ServiceTypes=KonqPopupMenu/Plugin
 MimeType=application/x-desktop
@@ -7,4 +8,5 @@ X-KDE-Priority=TopLevel
 
 [Desktop Action runApplicationWithDedicatedGPU]
 Name=Run Application with dedicated GPU
+Icon=cpu
 Exec=${CMAKE_INSTALL_PREFIX}/libexec/dgpu-run-desktop-entry %u
