@@ -54,17 +54,17 @@ EXEC_LINE=$(awk -F '=' '
 ' "$1" | sed 's/\s*Exec\s*=//')
 
 if [[ $EXEC_LINE =~ steam[[:space:]]*steam://rungameid/ ]]; then
-    kdialog "Steam shortcuts are not supported by this command. To enable GPU offloading for Steam apps follow this guide instead <link>."
+    kdialog --msgbox "Steam shortcuts are not supported by this command. To enable GPU offloading for Steam apps follow this guide instead <link>."
     exit
 fi
 
 if [[ $EXEC_LINE =~ lutris[[:space:]]*lutris:rungameid/ ]]; then
-    kdialog "Lutris shortcuts are not supported by this command. To enable GPU offloading for Lutris apps follow this guide instead <link>."
+    kdialog --msgbox "Lutris shortcuts are not supported by this command. To enable GPU offloading for Lutris apps follow this guide instead <link>."
     exit
 fi
 
 if [[ $EXEC_LINE =~ rare[[:space:]]*launch[[:space:]]* ]]; then
-    kdialog "Rare shortcuts are not supported by this command. To enable GPU offloading for Rare apps follow this guide instead <link>."
+    kdialog --msgbox "Rare shortcuts are not supported by this command. To enable GPU offloading for Rare apps follow this guide instead <link>."
     exit
 fi
 
