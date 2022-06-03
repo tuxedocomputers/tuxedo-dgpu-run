@@ -105,4 +105,4 @@ export DRI_PRIME=1
 
 # Run the desktop entry
 
-kioclient exec $1
+kioclient exec "$1"
