@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Activate offloading using environment variables:
+#   __NV_PRIME_RENDER_OFFLOAD=1
+#       Vulkan: Activate implicit overlay for offloading on NVIDIA (which reorders available GPUs so that dGPUs come first)
+#       OpenGL: Make NVIDIAs implementation checking if it is running on an OPTIMUS device (and therefore making it not crash on PRIME devices)
+#   __VK_LAYER_NV_optimus=NVIDIA_only
+#       Vulkan: Make implicit overlay for offloading remove all non NVIDIA GPUs from the availability list (optional)
+#   __GLX_VENDOR_LIBRARY_NAME=nvidia
+#       OpenGL: Use NVIDIAs OpenGL implementation (i.e. using the proprietary NVIDIA driver and not Mesa which only supports the open source driver e.g. i915, amdgpu, and nouveau)
+#   DRI_PRIME=1
+#       For PRIME devices with discrete AMD GPU or when using nouveau this variable should be all that is needed. The three other Variables are ignored when the proprietary NVIDIA driver is not installed.
+
+__NV_PRIME_RENDER_OFFLOAD=1 __VK_LAYER_NV_optimus=NVIDIA_only __GLX_VENDOR_LIBRARY_NAME=nvidia DRI_PRIME=1 "$@"

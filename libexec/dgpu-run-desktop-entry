@@ -84,25 +84,6 @@ fi
 # in the used wineprefix must be fully closed before a switch between iGPU and dGPU can happen.
 
 
-# Activate offloading using environment variables
+# Activate offloading using environment variables and run the desktop entry
 
-# Vulkan: Activate implicit overlay for offloading (which reorders available
-#         GPUs so that dGPUs come first)
-# OpenGL: Make NVIDIAs implementation checking if it is running on an OPTIMUS
-#         device (and therefore making it not crash on OPTIMUS devices)
-export __NV_PRIME_RENDER_OFFLOAD=1
-# Vulkan: Make implicit overlay for offloading remove all non NVIDIA GPUs from
-#         the availability list (optional)
-export __VK_LAYER_NV_optimus=NVIDIA_only
-# OpenGL: Use NVIDIAs OpenGL implementation (aka using the proprietary NVIDIA
-#         driver and not Mesa which only supports the open source driver e.g.
-#         i915, amdgpu, and nouveau)
-export __GLX_VENDOR_LIBRARY_NAME=nvidia
-# For dual GPU devices with discrete AMD cards or when using nouveau this
-# variable should be all that is needed. The proprietary NVIDIA driver must
-# >not< be installed so that the variables above are ignored.
-export DRI_PRIME=1
-
-# Run the desktop entry
-
-kioclient exec "$1"
+dgpu-run kioclient exec "$1"
