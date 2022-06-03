@@ -86,4 +86,4 @@ fi
 
 # Activate offloading using environment variables and run the desktop entry
 
-dgpu-run kioclient exec "$1"
+dgpu-run kioclient exec "$@"
