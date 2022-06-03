@@ -53,31 +53,35 @@ EXEC_LINE=$(awk -F '=' '
     }
 ' "$1" | sed 's/\s*Exec\s*=//')
 
-if [[ $EXEC_LINE =~ steam[[:space:]]*steam://rungameid/ ]]; then
-    kdialog --msgbox "Steam shortcuts are not supported by this command. To enable GPU offloading for Steam apps follow this guide instead <link>."
+if [[ $EXEC_LINE =~ steam[[:space:]]+(.*[[:space:]]+)*steam://rungameid/ ]] || [[ $EXEC_LINE =~ steam[[:space:]]+(.*[[:space:]]+)*-applaunch[[:space:]]+ ]]; then
+    kdialog --msgbox "Steam shortcuts are not supported by this command.\n\nTo enable GPU offloading for Steam apps follow this guide instead <link>."
     exit
 fi
 
-if [[ $EXEC_LINE =~ lutris[[:space:]]*lutris:rungameid/ ]]; then
-    kdialog --msgbox "Lutris shortcuts are not supported by this command. To enable GPU offloading for Lutris apps follow this guide instead <link>."
+if [[ $EXEC_LINE =~ lutris[[:space:]]+(.*[[:space:]]+)*lutris:rungameid/ ]]; then
+    kdialog --msgbox "Lutris shortcuts are not supported by this command.\n\nTo enable GPU offloading for Lutris apps follow this guide instead <link>."
     exit
 fi
 
-if [[ $EXEC_LINE =~ rare[[:space:]]*launch[[:space:]]* ]]; then
-    kdialog --msgbox "Rare shortcuts are not supported by this command. To enable GPU offloading for Rare apps follow this guide instead <link>."
+if [[ $EXEC_LINE =~ rare[[:space:]]+(.*[[:space:]]+)*launch[[:space:]]+ ]]; then
+    kdialog --msgbox "Rare shortcuts are not supported by this command.\n\nTo enable GPU offloading for Rare apps follow this guide instead <link>."
     exit
 fi
 
-# Minigalaxy and Heroic don't create shortcuts
-# To check:
-# itch.io
-# GameHub
-# Bottles
-# PlayOnLinux
-# Pegasus Frontend
-# Epic Games Store installed through Lutris
-# UbisoftConnect installed through Lutris
-# Origin installed through Lutris
+if [[ $EXEC_LINE =~ bottles-cli[[:space:]]+(.*[[:space:]]+)*run[[:space:]]+; then
+    kdialog --msgbox "Bottles shortcuts are not supported by this command.\n\nTo enable GPU offloading for Bottles apps follow this guide instead <link>."
+    exit
+fi
+
+# PlayOnLinux does not need special treatment as the shortcuts created by it spawn an own process
+# GameHub, itch, Minigalaxy, and Heroic don't create shortcuts
+# itch, and Pegasus Frontend have no way to set launch options
+# Pegasus Frontend only launcher no installer
+# Gamehub does not prevent GOG Installer from creating shortcuts which bypass Gamehub settings
+
+# Using Epic Games Store, UbisoftConnect, Origin, or other Windows launchers directly without Lutris
+# managing the games and prefixes is unsupported and might or might not work. In short: The launcher
+# in the used wineprefix must be fully closed before a switch between iGPU and dGPU can happen.
 
 
 # Activate offloading using environment variables
