@@ -116,7 +116,7 @@ fi
 # shown in KDE and actions are not supported at the moment.
 
 DESTINATION_DIRECTORY=$(dirname $1)
-if [[ $# -ge 2 ]] && [[ $2 == --xdg-home ]] then
+if [[ $# -ge 2 ]] && [[ $2 == --xdg-home ]]; then
     if [[ -z "$XDG_DATA_HOME" ]]; then
         DESTINATION_DIRECTORY=$(realpath -s $HOME)/.local/share/applications
     else
