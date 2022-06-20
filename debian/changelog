@@ -1,3 +1,19 @@
+tuxedo-dgpu-run (0.0.3) jammy; urgency=medium
+
+  [ Werner Sembach ]
+  * Assign icon
+  * Fix kdialog syntax error
+  * Clarify incompatibility messages
+  * Add support for discrete AMD cards
+  * Fix paths with spaces not working
+  * Move variable set to own script
+  * Make dgpu-run-desktop-entry universally accessible as dgpu-run-desktop-entry-kde
+  * Fix typo
+  * Fix syntax error
+  * Translate UI messages to german
+
+ -- Tuxedo BOT <tux@tuxedocomputers.com>  Mon, 20 Jun 2022 14:39:05 +0200
+
 tuxedo-dgpu-run (0.0.2) jammy; urgency=medium
 
   [ Werner Sembach ]
