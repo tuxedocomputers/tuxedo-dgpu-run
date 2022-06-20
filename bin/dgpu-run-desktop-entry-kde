@@ -54,22 +54,50 @@ EXEC_LINE=$(awk -F '=' '
 ' "$1" | sed 's/\s*Exec\s*=//')
 
 if [[ $EXEC_LINE =~ steam[[:space:]]+(.*[[:space:]]+)*steam://rungameid/ ]] || [[ $EXEC_LINE =~ steam[[:space:]]+(.*[[:space:]]+)*-applaunch[[:space:]]+ ]]; then
-    kdialog --msgbox "Steam shortcuts are not supported by this command.\n\nTo enable GPU offloading for Steam apps follow this guide instead <link>."
+    case "${LANG:0:2}" in
+        de)
+            kdialog --msgbox "Steam Verknüpfungen werden von diesem Kommando nicht unterstützt.\n\nFolge diesem Leitfaden, um GPU Offloading für Steam apps zu aktivieren: <link>"
+            ;;
+        *)
+            kdialog --msgbox "Steam shortcuts are not supported by this command.\n\nTo enable GPU offloading for Steam apps follow this guide instead: <link>."
+            ;;
+    esac
     exit
 fi
 
 if [[ $EXEC_LINE =~ lutris[[:space:]]+(.*[[:space:]]+)*lutris:rungameid/ ]]; then
-    kdialog --msgbox "Lutris shortcuts are not supported by this command.\n\nTo enable GPU offloading for Lutris apps follow this guide instead <link>."
+    case "${LANG:0:2}" in
+        de)
+            kdialog --msgbox "Lutris Verknüpfungen werden von diesem Kommando nicht unterstützt.\n\nFolge diesem Leitfaden, um GPU Offloading für Lutris apps zu aktivieren: <link>"
+            ;;
+        *)
+            kdialog --msgbox "Lutris shortcuts are not supported by this command.\n\nTo enable GPU offloading for Lutris apps follow this guide instead: <link>."
+            ;;
+    esac
     exit
 fi
 
 if [[ $EXEC_LINE =~ rare[[:space:]]+(.*[[:space:]]+)*launch[[:space:]]+ ]]; then
-    kdialog --msgbox "Rare shortcuts are not supported by this command.\n\nTo enable GPU offloading for Rare apps follow this guide instead <link>."
+    case "${LANG:0:2}" in
+        de)
+            kdialog --msgbox "Rare Verknüpfungen werden von diesem Kommando nicht unterstützt.\n\nFolge diesem Leitfaden, um GPU Offloading für Rare apps zu aktivieren: <link>"
+            ;;
+        *)
+            kdialog --msgbox "Rare shortcuts are not supported by this command.\n\nTo enable GPU offloading for Rare apps follow this guide instead: <link>."
+            ;;
+    esac
     exit
 fi
 
 if [[ $EXEC_LINE =~ bottles-cli[[:space:]]+(.*[[:space:]]+)*run[[:space:]]+ ]]; then
-    kdialog --msgbox "Bottles shortcuts are not supported by this command.\n\nTo enable GPU offloading for Bottles apps follow this guide instead <link>."
+    case "${LANG:0:2}" in
+        de)
+            kdialog --msgbox "Bottles Verknüpfungen werden von diesem Kommando nicht unterstützt.\n\nFolge diesem Leitfaden, um GPU Offloading für Bottles apps zu aktivieren: <link>"
+            ;;
+        *)
+            kdialog --msgbox "Bottles shortcuts are not supported by this command.\n\nTo enable GPU offloading for Bottles apps follow this guide instead: <link>."
+            ;;
+    esac
     exit
 fi
 

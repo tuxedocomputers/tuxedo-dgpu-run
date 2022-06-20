@@ -8,5 +8,6 @@ X-KDE-Priority=TopLevel
 
 [Desktop Action runApplicationWithDedicatedGPU]
 Name=Run application with dedicated GPU
+Name[de]=Starte Applikation mit dedizierter GPU
 Icon=cpu
 Exec=dgpu-run-desktop-entry-kde %u
