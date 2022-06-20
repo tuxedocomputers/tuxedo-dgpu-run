@@ -3,7 +3,7 @@ Icon=cpu
 Type=Service
 ServiceTypes=KonqPopupMenu/Plugin
 MimeType=application/x-desktop
-Actions=runApplicationWithDedicatedGPU;createRunApplicationWithDedicatedGPUShortcut;
+Actions=runApplicationWithDedicatedGPU;createRunApplicationWithDedicatedGPUMenuEntry;
 X-KDE-Priority=TopLevel
 
 [Desktop Action runApplicationWithDedicatedGPU]
@@ -12,8 +12,8 @@ Name[de]=Starte Applikation mit dedizierter GPU
 Icon=cpu
 Exec=dgpu-run-desktop-entry-kde %u
 
-[Desktop Action createRunApplicationWithDedicatedGPUShortcut]
-Name=Create "Run application with dedicated GPU" shortcut
-Name[de]=Erstelle "Starte Applikation mit dedizierter GPU" Verknüpfung
+[Desktop Action createRunApplicationWithDedicatedGPUMenuEntry]
+Name=Create "Run application with dedicated GPU" menu entry
+Name[de]=Erstelle "Starte Applikation mit dedizierter GPU" Menüeintrag
 Icon=cpu
 Exec=dgpu-run-desktop-entry-kde-create-shortcut %u --xdg-home
