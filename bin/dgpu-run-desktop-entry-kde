@@ -68,7 +68,7 @@ if [[ $EXEC_LINE =~ rare[[:space:]]+(.*[[:space:]]+)*launch[[:space:]]+ ]]; then
     exit
 fi
 
-if [[ $EXEC_LINE =~ bottles-cli[[:space:]]+(.*[[:space:]]+)*run[[:space:]]+; then
+if [[ $EXEC_LINE =~ bottles-cli[[:space:]]+(.*[[:space:]]+)*run[[:space:]]+ ]]; then
     kdialog --msgbox "Bottles shortcuts are not supported by this command.\n\nTo enable GPU offloading for Bottles apps follow this guide instead <link>."
     exit
 fi
