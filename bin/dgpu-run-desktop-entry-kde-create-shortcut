@@ -1,0 +1,133 @@
+#!/bin/bash
+
+
+# Help output
+
+if [[ $# -lt 1 ]] || [[ $1 != *.desktop ]]; then
+    echo "Usage: $0 <desktop entry>"
+    exit
+fi
+
+
+# Check if PRIME is supported and correctly set up
+
+if ! [[ -f /var/lib/ubuntu-drivers-common/last_gfx_boot ]]; then
+    kdialog --yesno "/var/lib/ubuntu-drivers-common/last_gfx_boot not found. Can't find number of installed GPUs.\n\nContinue anyway?"
+    if ! [[ $? ]]; then exit; fi
+else
+    GPU_COUNT=$(wc -l /var/lib/ubuntu-drivers-common/last_gfx_boot | awk '{print $1}')
+
+    if [[ $GPU_COUNT -lt 1 ]]; then
+        kdialog --yesno "/var/lib/ubuntu-drivers-common/last_gfx_boot empty. Can't find number of installed GPUs.\n\nContinue anyway?"
+        if ! [[ $? ]]; then exit; fi
+    elif [[ $GPU_COUNT -eq 1 ]]; then
+        kdialog --yesno "System does not support GPU offloading. It either has only one GPU or one of the GPUs is disabled in BIOS.\n\nContinue anyway?"
+        if ! [[ $? ]]; then exit; fi
+    fi
+fi
+
+if ! command -v prime-select > /dev/null 2>&1; then
+    kdialog --yesno "prime-select not found. GPU offloading not installed correctly.\n\nContinue anyway?"
+    if ! $?; then exit; fi
+else
+    if [[ $(prime-select query) != "on-demand" ]]; then
+        kdialog --yesno "GPU on-demand mode not active. Run \"sudo prime-select on-demand\" and reboot your system to correct this setting.\n\nContinue anyway?"
+        if ! [[ $? ]]; then exit; fi
+    fi
+fi
+
+
+# Check if desktop entry is an unsuported launcher shortcut
+
+EXEC_LINE=$(awk -F '=' '
+    $0~"^\\s*\\[Desktop Entry\\]\\s*$" {
+        SECTION_ACTIVE=1
+        next
+    }
+    $0~"^\\s*\\[.*\\]\\s*$" {
+        SECTION_ACTIVE=0
+        next
+    }
+    SECTION_ACTIVE==1 && $1~"^\\s*Exec\\s*$" {
+        print $0
+    }
+' "$1" | sed 's/\s*Exec\s*=//')
+
+if [[ $EXEC_LINE =~ steam[[:space:]]+(.*[[:space:]]+)*steam://rungameid/ ]] || [[ $EXEC_LINE =~ steam[[:space:]]+(.*[[:space:]]+)*-applaunch[[:space:]]+ ]]; then
+    case "${LANG:0:2}" in
+        de)
+            kdialog --msgbox "Steam Verknüpfungen werden von diesem Kommando nicht unterstützt.\n\nFolge diesem Leitfaden, um GPU Offloading für Steam apps zu aktivieren: <link>"
+            ;;
+        *)
+            kdialog --msgbox "Steam shortcuts are not supported by this command.\n\nTo enable GPU offloading for Steam apps follow this guide instead: <link>."
+            ;;
+    esac
+    exit
+fi
+
+if [[ $EXEC_LINE =~ lutris[[:space:]]+(.*[[:space:]]+)*lutris:rungameid/ ]]; then
+    case "${LANG:0:2}" in
+        de)
+            kdialog --msgbox "Lutris Verknüpfungen werden von diesem Kommando nicht unterstützt.\n\nFolge diesem Leitfaden, um GPU Offloading für Lutris apps zu aktivieren: <link>"
+            ;;
+        *)
+            kdialog --msgbox "Lutris shortcuts are not supported by this command.\n\nTo enable GPU offloading for Lutris apps follow this guide instead: <link>."
+            ;;
+    esac
+    exit
+fi
+
+if [[ $EXEC_LINE =~ rare[[:space:]]+(.*[[:space:]]+)*launch[[:space:]]+ ]]; then
+    case "${LANG:0:2}" in
+        de)
+            kdialog --msgbox "Rare Verknüpfungen werden von diesem Kommando nicht unterstützt.\n\nFolge diesem Leitfaden, um GPU Offloading für Rare apps zu aktivieren: <link>"
+            ;;
+        *)
+            kdialog --msgbox "Rare shortcuts are not supported by this command.\n\nTo enable GPU offloading for Rare apps follow this guide instead: <link>."
+            ;;
+    esac
+    exit
+fi
+
+if [[ $EXEC_LINE =~ bottles-cli[[:space:]]+(.*[[:space:]]+)*run[[:space:]]+ ]]; then
+    case "${LANG:0:2}" in
+        de)
+            kdialog --msgbox "Bottles Verknüpfungen werden von diesem Kommando nicht unterstützt.\n\nFolge diesem Leitfaden, um GPU Offloading für Bottles apps zu aktivieren: <link>"
+            ;;
+        *)
+            kdialog --msgbox "Bottles shortcuts are not supported by this command.\n\nTo enable GPU offloading for Bottles apps follow this guide instead: <link>."
+            ;;
+    esac
+    exit
+fi
+
+# PlayOnLinux does not need special treatment as the shortcuts created by it spawn an own process
+# GameHub, itch, Minigalaxy, and Heroic don't create shortcuts
+# itch, and Pegasus Frontend have no way to set launch options
+# Pegasus Frontend only launcher no installer
+# Gamehub does not prevent GOG Installer from creating shortcuts which bypass Gamehub settings
+
+# Using Epic Games Store, UbisoftConnect, Origin, or other Windows launchers directly without Lutris
+# managing the games and prefixes is unsupported and might or might not work. In short: The launcher
+# in the used wineprefix must be fully closed before a switch between iGPU and dGPU can happen.
+
+
+# Create a desktop entry that launches the original entry but with dgpu-run. This entry will only be
+# shown in KDE and actions are not supported at the moment.
+
+awk -F '=' '
+    $0~"^\\s*\\[Desktop Entry\\]\\s*$" {
+        SECTION_ACTIVE=1
+        print $0
+        next
+    }
+    $0~"^\\s*\\[.*\\]\\s*$" {
+        SECTION_ACTIVE=0
+        next
+    }
+    SECTION_ACTIVE==1 && $1!~"^\\s*Exec\\s*$" && $1!~"^\\s*Actions\\s*$" && $1!~"^\\s*OnlyShowIn\\s*$" {
+        print $0
+    }
+' "$1" > "$(dirname $1)/tuxedo-dgpu-run_$(basename $1)"
+echo "OnlyShowIn=KDE;" >> "$(dirname $1)/tuxedo-dgpu-run_$(basename $1)"
+echo "Exec=dgpu-run kioclient exec \"$(realpath -s "$1")\"" >> "$(dirname $1)/tuxedo-dgpu-run_$(basename $1)"
