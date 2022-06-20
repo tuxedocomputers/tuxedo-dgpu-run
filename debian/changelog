@@ -1,3 +1,15 @@
+tuxedo-dgpu-run (0.0.4) jammy; urgency=medium
+
+  [ Werner Sembach ]
+  * Add 'Create "Run application with dedicated GPU" shortcut' command
+  * Alter name of new shortcuts
+  * Make kicker action create shortcuts in $XDG_DATA_HOME
+  * Fix syntax error
+  * Remove 'Create "Run application with dedicated GPU" shortcut' action from desktop context menu
+  * Rephrase context menu entry
+
+ -- Tuxedo BOT <tux@tuxedocomputers.com>  Mon, 20 Jun 2022 18:11:45 +0200
+
 tuxedo-dgpu-run (0.0.3) jammy; urgency=medium
 
   [ Werner Sembach ]
