@@ -125,7 +125,10 @@ awk -F '=' '
         SECTION_ACTIVE=0
         next
     }
-    SECTION_ACTIVE==1 && $1!~"^\\s*Exec\\s*$" && $1!~"^\\s*Actions\\s*$" && $1!~"^\\s*OnlyShowIn\\s*$" {
+    SECTION_ACTIVE==1 && $1~"^\\s*Name(\\[[^\\[\\]]*\\])?\\s*$" {
+        printf "%s (dGPU)\n", $0
+    }
+    SECTION_ACTIVE==1 && $1!~"^\\s*Exec\\s*$" && $1!~"^\\s*Actions\\s*$" && $1!~"^\\s*OnlyShowIn\\s*$" && $1!~"^\\s*Name(\\[[^\\[\\]]*\\])?\\s*$" {
         print $0
     }
 ' "$1" > "$(dirname $1)/tuxedo-dgpu-run_$(basename $1)"
