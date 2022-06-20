@@ -4,7 +4,7 @@
 # Help output
 
 if [[ $# -lt 1 ]] || [[ $1 != *.desktop ]]; then
-    echo "Usage: $0 <desktop entry>"
+    echo "Usage: $0 <desktop entry> [--xdg-home]"
     exit
 fi
 
@@ -115,6 +115,15 @@ fi
 # Create a desktop entry that launches the original entry but with dgpu-run. This entry will only be
 # shown in KDE and actions are not supported at the moment.
 
+DESTINATION_DIRECTORY=$(dirname $1)
+if [[ $# -ge 2 ]] && [[ $2 == --xdg-home ]] then
+    if [[ -z "$XDG_DATA_HOME" ]]; then
+        DESTINATION_DIRECTORY=$(realpath -s $HOME)/.local/share/applications
+    else
+        DESTINATION_DIRECTORY=$(realpath -s $XDG_DATA_HOME)/applications
+    fi
+fi
+
 awk -F '=' '
     $0~"^\\s*\\[Desktop Entry\\]\\s*$" {
         SECTION_ACTIVE=1
@@ -131,6 +140,6 @@ awk -F '=' '
     SECTION_ACTIVE==1 && $1!~"^\\s*Exec\\s*$" && $1!~"^\\s*Actions\\s*$" && $1!~"^\\s*OnlyShowIn\\s*$" && $1!~"^\\s*Name(\\[[^\\[\\]]*\\])?\\s*$" {
         print $0
     }
-' "$1" > "$(dirname $1)/tuxedo-dgpu-run_$(basename $1)"
-echo "OnlyShowIn=KDE;" >> "$(dirname $1)/tuxedo-dgpu-run_$(basename $1)"
-echo "Exec=dgpu-run kioclient exec \"$(realpath -s "$1")\"" >> "$(dirname $1)/tuxedo-dgpu-run_$(basename $1)"
+' "$1" > "$DESTINATION_DIRECTORY/tuxedo-dgpu-run_$(basename $1)"
+echo "OnlyShowIn=KDE;" >> "$DESTINATION_DIRECTORY/tuxedo-dgpu-run_$(basename $1)"
+echo "Exec=dgpu-run kioclient exec \"$(realpath -s "$1")\"" >> "$DESTINATION_DIRECTORY/tuxedo-dgpu-run_$(basename $1)"
