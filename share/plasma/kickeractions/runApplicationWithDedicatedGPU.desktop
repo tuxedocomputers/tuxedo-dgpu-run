@@ -7,13 +7,13 @@ Actions=runApplicationWithDedicatedGPU;createRunApplicationWithDedicatedGPUMenuE
 X-KDE-Priority=TopLevel
 
 [Desktop Action runApplicationWithDedicatedGPU]
-Name=Run application with dedicated GPU
-Name[de]=Starte Applikation mit dedizierter GPU
+Name=Run application with discrete GPU
+Name[de]=Starte Applikation mit diskreter GPU
 Icon=cpu
 Exec=dgpu-run-desktop-entry-kde %u
 
 [Desktop Action createRunApplicationWithDedicatedGPUMenuEntry]
-Name=Create "Run application with dedicated GPU" menu entry
-Name[de]=Erstelle "Starte Applikation mit dedizierter GPU" Menüeintrag
+Name=Create "Run application with discrete GPU" menu entry
+Name[de]=Erstelle "Starte Applikation mit diskreter GPU" Menüeintrag
 Icon=cpu
 Exec=dgpu-run-desktop-entry-kde-create-shortcut %u --xdg-home
