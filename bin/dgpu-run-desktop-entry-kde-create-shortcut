@@ -123,6 +123,7 @@ if [[ $# -ge 2 ]] && [[ $2 == --xdg-home ]]; then
         DESTINATION_DIRECTORY=$(realpath -s $XDG_DATA_HOME)/applications
     fi
 fi
+mkdir -p $DESTINATION_DIRECTORY
 
 awk -F '=' '
     $0~"^\\s*\\[Desktop Entry\\]\\s*$" {
