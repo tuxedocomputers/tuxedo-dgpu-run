@@ -1,3 +1,14 @@
+tuxedo-dgpu-run (0.0.5) jammy; urgency=medium
+
+  [ Werner Sembach ]
+  * Fix word confusion
+  * Make license easier to find
+  * Add ReadMe
+  * Automatically create potentially missing directory
+  * Remove reference to not yet existing guide
+
+ -- Tuxedo BOT <tux@tuxedocomputers.com>  Tue, 21 Jun 2022 16:47:19 +0200
+
 tuxedo-dgpu-run (0.0.4) jammy; urgency=medium
 
   [ Werner Sembach ]
