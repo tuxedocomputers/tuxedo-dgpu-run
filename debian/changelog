@@ -1,3 +1,9 @@
+tuxedo-dgpu-run (1.0.0) jammy; urgency=medium
+
+  * First public release
+
+ -- Tuxedo BOT <tux@tuxedocomputers.com>  Tue, 28 Jun 2022 16:17:39 +0200
+
 tuxedo-dgpu-run (0.0.5) jammy; urgency=medium
 
   [ Werner Sembach ]
