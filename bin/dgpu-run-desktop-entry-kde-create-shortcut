@@ -143,4 +143,4 @@ awk -F '=' '
     }
 ' "$1" > "$DESTINATION_DIRECTORY/tuxedo-dgpu-run_$(basename $1)"
 echo "OnlyShowIn=KDE;" >> "$DESTINATION_DIRECTORY/tuxedo-dgpu-run_$(basename $1)"
-echo "Exec=dgpu-run kioclient exec \"$(realpath -s "$1")\"" >> "$DESTINATION_DIRECTORY/tuxedo-dgpu-run_$(basename $1)"
+echo "Exec=dgpu-run-desktop-entry-kde \"$(realpath -s "$1")\"" >> "$DESTINATION_DIRECTORY/tuxedo-dgpu-run_$(basename $1)"
