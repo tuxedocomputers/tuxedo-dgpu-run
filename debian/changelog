@@ -1,3 +1,10 @@
+tuxedo-dgpu-run (1.0.2) jammy; urgency=medium
+
+  [ Werner Sembach ]
+  * Make use of existing script
+
+ -- Tuxedo BOT <tux@tuxedocomputers.com>  Mon, 19 Sep 2022 13:46:44 +0200
+
 tuxedo-dgpu-run (1.0.1) jammy; urgency=medium
 
   [ Werner Sembach ]
