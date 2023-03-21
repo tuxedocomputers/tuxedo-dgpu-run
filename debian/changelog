@@ -1,3 +1,14 @@
+tuxedo-dgpu-run (1.0.3) jammy; urgency=medium
+
+  [ Werner Sembach ]
+  * Fix abort condition
+  * Add on-demand tutorial link
+  * Apply abort fix to other script as well
+  * Add tutorial link to other script
+  * Fix syntax error
+
+ -- Tuxedo BOT <tux@tuxedocomputers.com>  Tue, 21 Mar 2023 14:25:51 +0100
+
 tuxedo-dgpu-run (1.0.2) jammy; urgency=medium
 
   [ Werner Sembach ]
