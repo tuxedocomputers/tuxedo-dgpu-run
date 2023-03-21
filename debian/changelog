@@ -3,7 +3,10 @@ tuxedo-dgpu-run (1.0.4) jammy; urgency=medium
   [ Werner Sembach ]
   * Fix copy paste error
 
- -- Tuxedo BOT <tux@tuxedocomputers.com>  Tue, 21 Mar 2023 14:54:58 +0100
+  [Torsten Wohlfarth]
+  * package last changes
+
+ -- Torsten Wohlfarth <two@tuxedocomputers.com>  Tue, 21 Mar 2023 15:02:48 +0100
 
 tuxedo-dgpu-run (1.0.3) jammy; urgency=medium
 
