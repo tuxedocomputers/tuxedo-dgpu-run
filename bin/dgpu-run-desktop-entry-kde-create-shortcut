@@ -61,10 +61,10 @@ EXEC_LINE=$(awk -F '=' '
 if [[ $EXEC_LINE =~ steam[[:space:]]+(.*[[:space:]]+)*steam://rungameid/ ]] || [[ $EXEC_LINE =~ steam[[:space:]]+(.*[[:space:]]+)*-applaunch[[:space:]]+ ]]; then
     case "${LANG:0:2}" in
         de)
-            kdialog --msgbox "Steam Verknüpfungen werden von diesem Kommando nicht unterstützt."
+            kdialog --msgbox "Steam Verknüpfungen werden von diesem Kommando nicht unterstützt.\n\nEine Anleitung wie man hierfür die diskrete GPU verwendet befindet sich hier:\n\nhttps://www.tuxedocomputers.com/de/Der-umfassende-PRIME-GPU-Render-Offloading/GPU-on-demand-Mode-Leitfaden.tuxedo"
             ;;
         *)
-            kdialog --msgbox "Steam shortcuts are not supported by this command."
+            kdialog --msgbox "Steam shortcuts are not supported by this command.\n\nA manual on how to use the discrete GPU for this can be found here:\n\nhttps://www.tuxedocomputers.com/en/PRIME-GPU-Render-Offloading/GPU-on-demand-Mode-Guide.tuxedo"
             ;;
     esac
     exit
@@ -73,10 +73,10 @@ fi
 if [[ $EXEC_LINE =~ lutris[[:space:]]+(.*[[:space:]]+)*lutris:rungameid/ ]]; then
     case "${LANG:0:2}" in
         de)
-            kdialog --msgbox "Lutris Verknüpfungen werden von diesem Kommando nicht unterstützt."
+            kdialog --msgbox "Lutris Verknüpfungen werden von diesem Kommando nicht unterstützt.\n\nEine Anleitung wie man hierfür die diskrete GPU verwendet befindet sich hier:\n\nhttps://www.tuxedocomputers.com/de/Der-umfassende-PRIME-GPU-Render-Offloading/GPU-on-demand-Mode-Leitfaden.tuxedo"
             ;;
         *)
-            kdialog --msgbox "Lutris shortcuts are not supported by this command."
+            kdialog --msgbox "Lutris shortcuts are not supported by this command.\n\nA manual on how to use the discrete GPU for this can be found here:\n\nhttps://www.tuxedocomputers.com/en/PRIME-GPU-Render-Offloading/GPU-on-demand-Mode-Guide.tuxedo"
             ;;
     esac
     exit
@@ -85,10 +85,10 @@ fi
 if [[ $EXEC_LINE =~ rare[[:space:]]+(.*[[:space:]]+)*launch[[:space:]]+ ]]; then
     case "${LANG:0:2}" in
         de)
-            kdialog --msgbox "Rare Verknüpfungen werden von diesem Kommando nicht unterstützt."
+            kdialog --msgbox "Rare Verknüpfungen werden von diesem Kommando nicht unterstützt.\n\nEine Anleitung wie man hierfür die diskrete GPU verwendet befindet sich hier:\n\nhttps://www.tuxedocomputers.com/de/Der-umfassende-PRIME-GPU-Render-Offloading/GPU-on-demand-Mode-Leitfaden.tuxedo"
             ;;
         *)
-            kdialog --msgbox "Rare shortcuts are not supported by this command."
+            kdialog --msgbox "Rare shortcuts are not supported by this command.\n\nA manual on how to use the discrete GPU for this can be found here:\n\nhttps://www.tuxedocomputers.com/en/PRIME-GPU-Render-Offloading/GPU-on-demand-Mode-Guide.tuxedo"
             ;;
     esac
     exit
@@ -97,10 +97,10 @@ fi
 if [[ $EXEC_LINE =~ bottles-cli[[:space:]]+(.*[[:space:]]+)*run[[:space:]]+ ]]; then
     case "${LANG:0:2}" in
         de)
-            kdialog --msgbox "Bottles Verknüpfungen werden von diesem Kommando nicht unterstützt."
+            kdialog --msgbox "Bottles Verknüpfungen werden von diesem Kommando nicht unterstützt.\n\nEine Anleitung wie man hierfür die diskrete GPU verwendet befindet sich hier:\n\nhttps://www.tuxedocomputers.com/de/Der-umfassende-PRIME-GPU-Render-Offloading/GPU-on-demand-Mode-Leitfaden.tuxedo"
             ;;
         *)
-            kdialog --msgbox "Bottles shortcuts are not supported by this command."
+            kdialog --msgbox "Bottles shortcuts are not supported by this command.\n\nA manual on how to use the discrete GPU for this can be found here:\n\nhttps://www.tuxedocomputers.com/en/PRIME-GPU-Render-Offloading/GPU-on-demand-Mode-Guide.tuxedo"
             ;;
     esac
     exit
