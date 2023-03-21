@@ -12,30 +12,30 @@ fi
 # Check if PRIME is supported and correctly set up
 
 if ! [[ -f /var/lib/ubuntu-drivers-common/last_gfx_boot ]]; then
-    kdialog --yesno "/var/lib/ubuntu-drivers-common/last_gfx_boot not found. Can't find number of installed GPUs.\n\nContinue anyway?"; then
+    if ! kdialog --yesno "/var/lib/ubuntu-drivers-common/last_gfx_boot not found. Can't find number of installed GPUs.\n\nContinue anyway?"; then
         exit;
     fi
 else
     GPU_COUNT=$(wc -l /var/lib/ubuntu-drivers-common/last_gfx_boot | awk '{print $1}')
 
     if [[ $GPU_COUNT -lt 1 ]]; then
-        kdialog --yesno "/var/lib/ubuntu-drivers-common/last_gfx_boot empty. Can't find number of installed GPUs.\n\nContinue anyway?"; then
+        if ! kdialog --yesno "/var/lib/ubuntu-drivers-common/last_gfx_boot empty. Can't find number of installed GPUs.\n\nContinue anyway?"; then
             exit;
         fi
     elif [[ $GPU_COUNT -eq 1 ]]; then
-        kdialog --yesno "System does not support GPU offloading. It either has only one GPU or one of the GPUs is disabled in BIOS.\n\nContinue anyway?"; then
+        if ! kdialog --yesno "System does not support GPU offloading. It either has only one GPU or one of the GPUs is disabled in BIOS.\n\nContinue anyway?"; then
             exit;
         fi
     fi
 fi
 
 if ! command -v prime-select > /dev/null 2>&1; then
-    kdialog --yesno "prime-select not found. GPU offloading not installed correctly.\n\nContinue anyway?"; then
+    if ! kdialog --yesno "prime-select not found. GPU offloading not installed correctly.\n\nContinue anyway?"; then
         exit;
     fi
 else
     if [[ $(prime-select query) != "on-demand" ]]; then
-        kdialog --yesno "GPU on-demand mode not active. Run \"sudo prime-select on-demand\" and reboot your system to correct this setting.\n\nContinue anyway?"; then
+        if ! kdialog --yesno "GPU on-demand mode not active. Run \"sudo prime-select on-demand\" and reboot your system to correct this setting.\n\nContinue anyway?"; then
             exit;
         fi
     fi
