@@ -1,0 +1,13 @@
+[Desktop Entry]
+Icon=cpu
+Type=Service
+ServiceTypes=KonqPopupMenu/Plugin
+MimeType=application/x-executable;application/vnd.appimage
+Actions=runApplicationWithDedicatedGPU;
+X-KDE-Priority=TopLevel
+
+[Desktop Action runApplicationWithDedicatedGPU]
+Name=Run application with discrete GPU
+Name[de]=Starte Applikation mit diskreter GPU
+Icon=cpu
+Exec=dgpu-run %u
