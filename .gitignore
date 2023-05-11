@@ -4,3 +4,6 @@
 /debian/tuxedo-dgpu-run.substvars
 /debian/tuxedo-dgpu-run/
 /obj-x86_64-linux-gnu/
+
+*.kdev4
+/build
