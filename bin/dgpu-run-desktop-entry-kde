@@ -34,7 +34,7 @@ if ! command -v prime-select > /dev/null 2>&1; then
         exit;
     fi
 else
-    if [[ $(prime-select query) != "on-demand" ]]; then
+    if [[ $(prime-select query) != "on-demand" ]] && [[ ${XDG_SESSION_TYPE} != "wayland" ]]; then
         if ! kdialog --yesno "GPU on-demand mode not active. Run \"sudo prime-select on-demand\" and reboot your system to correct this setting.\n\nContinue anyway?"; then
             exit;
         fi
