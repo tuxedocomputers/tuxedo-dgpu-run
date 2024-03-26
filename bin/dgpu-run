@@ -11,4 +11,4 @@
 #   DRI_PRIME=1
 #       For PRIME devices with discrete AMD GPU or when using nouveau this variable should be all that is needed. The three other Variables are ignored when the proprietary NVIDIA driver is not installed.
 
-__NV_PRIME_RENDER_OFFLOAD=1 __VK_LAYER_NV_optimus=NVIDIA_only __GLX_VENDOR_LIBRARY_NAME=nvidia DRI_PRIME=1 "$@"
+__NV_PRIME_RENDER_OFFLOAD=1 __VK_LAYER_NV_optimus=NVIDIA_only __GLX_VENDOR_LIBRARY_NAME=nvidia __GL_SYNC_TO_VBLANK=0 "$@"
