@@ -29,11 +29,7 @@ else
     fi
 fi
 
-if ! command -v prime-select > /dev/null 2>&1; then
-    if ! kdialog --yesno "prime-select not found. GPU offloading not installed correctly.\n\nContinue anyway?"; then
-        exit;
-    fi
-else
+if command -v prime-select > /dev/null 2>&1; then
     if [[ $(prime-select query) != "on-demand" ]]; then
         if ! kdialog --yesno "GPU on-demand mode not active. Run \"sudo prime-select on-demand\" and reboot your system to correct this setting.\n\nContinue anyway?"; then
             exit;
