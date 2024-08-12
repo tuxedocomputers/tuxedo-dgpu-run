@@ -1,3 +1,12 @@
+tuxedo-dgpu-run (1.1.1) UNRELEASED; urgency=medium
+
+  [ Werner Sembach ]
+  * Default gbp.conf for easier development
+  * Add kdevelop files to gitignore
+  * Remove hard requirement for prime-select because it is NVIDIA only
+
+ -- Tuxedo BOT <tux@tuxedocomputers.com>  Mon, 12 Aug 2024 17:42:19 +0200
+
 tuxedo-dgpu-run (1.1.0) jammy; urgency=medium
 
   [ Werner Sembach ]
